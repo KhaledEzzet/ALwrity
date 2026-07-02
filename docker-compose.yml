@@ -26,6 +26,10 @@ services:
       - alwrity-backend
     environment:
       REACT_APP_API_URL: ${REACT_APP_API_URL}
+      HOST: 0.0.0.0
+      PORT: 3000
+      DANGEROUSLY_DISABLE_HOST_CHECK: "true"
+      WDS_SOCKET_PORT: 0
     expose:
       - "3000"
 
