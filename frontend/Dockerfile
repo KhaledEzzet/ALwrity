@@ -1,8 +1,10 @@
 FROM node:20-bookworm-slim
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 WORKDIR /app/frontend
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     make \
     g++ \
