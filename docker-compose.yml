@@ -12,6 +12,8 @@ services:
       GPT_PROVIDER: ${GPT_PROVIDER:-gemini}
       DATABASE_URL: ${DATABASE_URL:-sqlite:///./data/alwrity.db}
       SECRET_KEY: ${SECRET_KEY}
+      HF_HOME: /app/backend/data/huggingface
+      TRANSFORMERS_CACHE: /app/backend/data/huggingface
     volumes:
       - alwrity_backend_data:/app/backend/data
     expose:
@@ -21,15 +23,11 @@ services:
     build:
       context: .
       dockerfile: ./frontend/Dockerfile
+      args:
+        REACT_APP_API_URL: ${REACT_APP_API_URL}
     restart: unless-stopped
     depends_on:
       - alwrity-backend
-    environment:
-      REACT_APP_API_URL: ${REACT_APP_API_URL}
-      HOST: 0.0.0.0
-      PORT: 3000
-      DANGEROUSLY_DISABLE_HOST_CHECK: "true"
-      WDS_SOCKET_PORT: 0
     expose:
       - "3000"
 
